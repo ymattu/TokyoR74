@@ -168,7 +168,7 @@ library(tidyverse)
 - tibble: tibble というモダンなデータフレーム
 </div>
 
-## 主役は {#shuyaku}
+## 本日の主役は {#shuyaku}
 <div class="column1">
 ![dplyr](img/dplyr.png)
 
