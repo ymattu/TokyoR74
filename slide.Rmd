@@ -167,6 +167,9 @@ library(tidyverse)
 
 </div>
 
+## この発表のゴール {#todaysgoal}
+- Rの **dplyr** パッケージで簡単な集計ができるようになること
+
 # 本日のデータ {#todaysdata}
 
 ## EC サイトのログデータ {#ecsitedata}
