@@ -56,24 +56,7 @@ options(dplyr.print_max = 1e9)
 ![icon](./img/twitter_icon.jpg)
 </div>
 
-## 著書(共著)
-<div class="column1">
-![book](./img/datasci.jpg)
-</div>
-<div class="column2">
-- 2 部構成
-- 第一部(基礎編)
-    - R 入門
-    - R のデータハンドリング基礎
-- 第二部(応用編)
-    - テキストマイニング
-    - R のパフォーマンス向上
-    - 地理データ解析
-    - ベイズ最適化入門
-    - ...etc
-</div>
-
-## 著書 2  {#bo}
+## 著書 {#bo}
 
 #### **R ユーザのための RStudio[実践]入門 <br> − tidyverse によるモダンな分析フローの世界−**
 <div class="column1">
