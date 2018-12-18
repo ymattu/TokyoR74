@@ -1,26 +1,26 @@
 ---
 title: "初心者セッション <br> 〜データハンドリング編〜"
-author: "@y__mattu"
+author: "y__mattu"
 date: "2018/11/10 Tokyo.R #74"
 output:
-  revealjs::revealjs_presentation:
-    include:
-      before_body: "slide-header.html"
-    mathjax: NULL
-    transition: convex
-    css: for_revealjs.css
-    theme: sky
-    highlight: kate
-    center: true
-    self_contained: false
-    reveal_plugins: ["chalkboard"]
-    reveal_options:
-      slideNumber: true
-      chalkboard:
-        theme: whiteboard
-    # incremental: false
+ revealjs::revealjs_presentation:
+   include:
+     before_body: "slide-header.html"
+   mathjax: NULL
+   transition: convex
+   css: for_revealjs.css
+   theme: sky
+   highlight: kate
+   center: true
+   self_contained: false
+   reveal_plugins: ["chalkboard"]
+   reveal_options:
+     slideNumber: true
+     chalkboard:
+       theme: whiteboard
+   # incremental: false
 pandoc_args: [
-  '--from', 'markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures'
+ '--from', 'markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures'
 ]
 ---
 
@@ -63,7 +63,7 @@ options(dplyr.print_max = 1e9)
 ![rstudiobook](./img/rstudiobook.jpg)
 </div>
 
-<div class="column2">
+<div class="column2”>
 - 通称: 「**宇宙本**」
 1. RStudio 入門(@y\_\_mattu)
 2. スクレイピングによるデータ取得(@y\_\_mattu)
@@ -106,7 +106,7 @@ digraph data_analytics {
 ```
 </div>
 
-<div class="column2">
+<div class="column2”>
 ### やること
 - 絞り込み(列・行)
 - 新しい変数の作成
@@ -138,7 +138,7 @@ library(tidyverse)
 ```
 </div>
 
-<div class="column2">
+<div class="column2”>
 読み込まれるパッケージ
 
 - ggplot2: 可視化
@@ -157,7 +157,7 @@ library(tidyverse)
 
 </div>
 
-<div class="column2">
+<div class="column2”>
 #### 特徴
 パッケージを使わないやり方より
 
@@ -176,6 +176,7 @@ library(tidyverse)
 - を意識して作ったダミーデータ
 - https://github.com/ymattu/sampledata_small
 
+
 ![データの説明](img/data_summary.png)
 
 ## データの読み込み方 {#prepare_data}
@@ -188,7 +189,6 @@ sales <- read_csv("sampledata_small/csv/Sales.csv")
 product <- read_csv("sampledata_small/csv/Products.csv")
 user_master <- read_csv("sampledata_small/csv/UserMaster.csv")
 ```
-
 
 # **dplyr** {#dplyr}
 ## 列選択 {#select}
@@ -211,7 +211,7 @@ sales %>%
 
 ## %>% {#pipe}
 ### パイプ演算子
-- “これまでの処理を次の関数の第１引数として渡す」という働き”(抜粋:: 「宇宙本」)
+- "これまでの処理を次の関数の第１引数として渡す」という働き"(抜粋:: 「宇宙本」)
 - 例
 
 ```{r }
@@ -334,7 +334,7 @@ product$Category %>%
 
 # 日付の操作 {#date}
 ## **lubridate** パッケージ {#lubridate}
-<div class="column1">
+<div class="column1”>
 ![lubridate](img/lubridate.png)
 </div>
 
@@ -386,19 +386,19 @@ sales %>%
 
 ```{r, echo=FALSE}
 sales %>%
-  mutate(buy_year = year(Timestamp)) %>%
-  group_by(UserID, buy_year) %>%
-  summarise(buy_count = n()) %>%
-  arrange(UserID) %>% 
-  head() %>%
-  DT::datatable(extensions =  'FixedColumns',
-  options = list(
-    deferRender = TRUE,
-    dom = "t",
-    scrollX = TRUE,
-    scrollY = 200,
-    scrollCollapse = TRUE
-  ))
+ mutate(buy_year = year(Timestamp)) %>%
+ group_by(UserID, buy_year) %>%
+ summarise(buy_count = n()) %>%
+ arrange(UserID) %>%
+ head() %>%
+ DT::datatable(extensions =  'FixedColumns',
+ options = list(
+   deferRender = TRUE,
+   dom = "t",
+   scrollX = TRUE,
+   scrollY = 200,
+   scrollCollapse = TRUE
+ ))
 ```
 
 # その他、代表的な <br>（面倒くさい）型たち {#othertype}
@@ -420,7 +420,13 @@ a <- data.frame(
   x1=c("A","B","C") ,
   x2=c(1,2,3)
 )
-a
+a %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 </div>
 
@@ -433,7 +439,13 @@ b <- data.frame(
   x1=c("A","B","D") ,
   x3=c(TRUE , FALSE , TRUE)
 )
-b
+b %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 </div>
 
@@ -448,7 +460,13 @@ a <- data.frame(
   x1=c("A","B","C") ,
   x2=c(1,2,3)
 )
-a
+a %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 
 
@@ -458,16 +476,33 @@ b <- data.frame(
   x1=c("A","B","D") ,
   x3=c(TRUE , FALSE , TRUE)
 )
-b
+b %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 </div>
 
 
 <div class="column2">
 
-```{r }
+```{r, eval=FALSE}
 inner_join(a, b, by = "x1")
 ```
+
+```{r, echo=FALSE}
+inner_join(a, b, by = "x1") %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
+```
+
 </div>
 
 
@@ -481,7 +516,13 @@ a <- data.frame(
   x1=c("A","B","C") ,
   x2=c(1,2,3)
 )
-a
+a %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 
 ### b
@@ -490,16 +531,33 @@ b <- data.frame(
   x1=c("A","B","D") ,
   x3=c(TRUE , FALSE , TRUE)
 )
-b
+b %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 </div>
 
 
 <div class="column2">
 
-```{r }
+```{r, eval=FALSE}
 left_join(a, b, by = "x1")
 ```
+
+```{r, echo=FALSE}
+left_join(a, b, by = "x1") %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
+```
+
 </div>
 
 
@@ -512,7 +570,13 @@ a <- data.frame(
   x1=c("A","B","C") ,
   x2=c(1,2,3)
 )
-a
+a %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 
 ### b
@@ -521,16 +585,33 @@ b <- data.frame(
   x1=c("A","B","D") ,
   x3=c(TRUE , FALSE , TRUE)
 )
-b
+b %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 </div>
 
 
 <div class="column2">
 
-```{r }
+```{r, eval=FALSE}
 full_join(a, b, by = "x1")
 ```
+
+```{r, echo=FALSE}
+full_join(a, b, by = "x1") %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
+```
+
 </div>
 
 
@@ -540,10 +621,17 @@ full_join(a, b, by = "x1")
 ### a
 ```{r echo=FALSE}
 a <- data.frame(
-  x1=c("A","B","C") ,
-  x2=c(1,2,3)
+x1=c("A","B","C") ,
+ x2=c(1,2,3)
 )
-a
+a %>%
+ DT::datatable(extensions = 'FixedColumns',
+ options = list(
+   dom = 't',
+   scrollX = TRUE,
+   scrollCollapse = TRUE
+ ))
+
 ```
 
 ### b
@@ -552,16 +640,33 @@ b <- data.frame(
   x1=c("A","B","D") ,
   x3=c(TRUE , FALSE , TRUE)
 )
-b
+b %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 </div>
 
 
 <div class="column2">
 
-```{r }
+```{r, eval=FALSE}
 anti_join(a, b, by = "x1")
 ```
+
+```{r, echo=FALSE}
+anti_join(a, b, by = "x1") %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
+```
+
 </div>
 
 
@@ -601,10 +706,23 @@ c
 
 <div class="column2">
 こうする...?
-```{r }
+
+```{r, eval=FALSE}
 a %>%
   full_join(b, by = "x1") %>%
   full_join(c, by = "x1")
+```
+
+```{r, echo=FALSE}
+a %>%
+  full_join(b, by = "x1") %>%
+  full_join(c, by = "x1") %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 数が増えると大変!
 </div>
@@ -613,10 +731,22 @@ a %>%
 
 ## たくさんのテーブルを join したい! {#reducejoin2}
 ### Answer : 初心者セッションの範囲をこえますが、<br>**purrr**パッケージを使うと簡単です。
-```{r }
+```{r, eval=FALSE}
 datlist <- list(a, b, c)
 datlist %>%
   purrr::reduce(~full_join(.x, .y, by = "x1"))
+```
+
+```{r, echo=FALSE}
+datlist <- list(a, b, c)
+datlist %>%
+  purrr::reduce(~full_join(.x, .y, by = "x1")) %>%
+  DT::datatable(extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    scrollX = TRUE,
+    scrollCollapse = TRUE
+  ))
 ```
 **purrr** パッケージの参考資料→[そろそろ手を出す purrr](https://speakerdeck.com/s_uryu/nekosky)
 
@@ -630,3 +760,4 @@ datlist %>%
 - 以下の URL で公開しています。 <br> https://ymattu.github.io/TokyoR74/slide.html#/
 
 ## Enjoy! {#enjoy}
+
